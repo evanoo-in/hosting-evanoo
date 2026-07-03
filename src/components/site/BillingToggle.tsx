@@ -17,7 +17,7 @@ export function BillingToggle({
           key={opt}
           onClick={() => onChange(opt)}
           className={cn(
-            "rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
+            "rounded-full px-4 py-1.5 text-sm font-medium transition-colors cursor-pointer",
             value === opt
               ? "gradient-brand text-white shadow-[var(--shadow-glow)]"
               : "text-muted-foreground hover:text-foreground"

@@ -12,7 +12,6 @@ import Image from "next/image";
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  console.log("pathname", pathname);
   return (
     <header className="sticky top-0 z-50 w-full">
       <div className="glass border-b border-white/5">
@@ -33,8 +32,12 @@ export function Navbar() {
           <nav className="hidden items-center gap-1 lg:flex">
             {nav.map((n) => {
               // const active = pathname === n.to;
-              const normalize = (path: string) => path.replace(/\/$/, "") || "/";
-              const active = normalize(pathname) === normalize(n.to);
+              const active =
+                n.to === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(n.to);
+              // const normalize = (path: string) => path.replace(/\/$/, "") || "/";
+              // const active = normalize(pathname) === normalize(n.to);
               return (
                 <Link
                   key={n.to}
@@ -79,16 +82,22 @@ export function Navbar() {
         {open && (
           <div className="border-t border-white/5 lg:hidden">
             <div className="mx-auto max-w-7xl px-4 py-3">
-              {nav.map((n) => (
-                <Link
-                  key={n.to}
-                  href={n.to}
-                  onClick={() => setOpen(false)}
-                  className="block rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-white/5"
-                >
-                  {n.label}
-                </Link>
-              ))}
+              {nav.map((n, idx) => {
+                const active =
+                  n.to === "/"
+                    ? pathname === "/"
+                    : pathname.startsWith(n.to);
+                return (
+                  <Link
+                    key={n.to}
+                    href={n.to}
+                    onClick={() => setOpen(false)}
+                    className={`block rounded-lg px-3 py-2.5 text-sm font-medium ${idx !== 0 && "mt-1"} ${active ? "text-foreground bg-white/5" : "text-muted-foreground hover:text-foreground hover:bg-white/5"}`}
+                  >
+                    {n.label}
+                  </Link>
+                )
+              })}
               <div className="mt-2 flex gap-2 border-t border-white/5 pt-3">
                 <Link
                   href="/client/login"

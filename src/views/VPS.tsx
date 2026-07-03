@@ -15,8 +15,8 @@ export default function VPS() {
       />
 
       <Section className="!pt-4">
-        <div className="overflow-x-auto">
-          <div className="grid min-w-[640px] gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="">
+          <div className="grid md:min-w-[640px] max-sm:min-w-[auto] gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {vpsPlans.map((p) => (
               <PricingCard
                 key={p.name}

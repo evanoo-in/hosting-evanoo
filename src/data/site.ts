@@ -1,6 +1,6 @@
 export const nav = [
   { label: "Hosting", to: "/" },
-  { label: "Hosting", to: "/shared-hosting" },
+  // { label: "Hosting", to: "/shared-hosting" },
   { label: "WordPress", to: "/wordpress-hosting" },
   { label: "VPS", to: "/vps" },
   { label: "Dedicated", to: "/dedicated" },
